@@ -7,7 +7,7 @@
     <img src="http://armviz.io/visualizebutton.png"/>
 </a>
 
-Built by: [jmspring](https://github.com/paulwfield)
+Built by: [pauwfield](https://github.com/paulwfield)
 
 This template allows you to deploy an CentOS Server VM with Docker (using the [Docker Extension][ext])
 and starts a Docker instance listening on ports.  The data disk
