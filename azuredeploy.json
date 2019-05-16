@@ -75,7 +75,7 @@
     "nicName": "[concat(parameters('vmName'),'EigenNIC')]",
     "dockerExtensionName": "DockerExtension",
     "azureVMUtilsName": "vmCustomizationExt",
-    "azureVMUtilsScriptUrl": "https://raw.githubusercontent.com/eigen-ltd/azure-docker-eigen/extras/setup_data_disk.sh",
+    "azureVMUtilsScriptUrl": "https://raw.githubusercontent.com/eigen-ltd/azure-docker-eigen/master/extras/setup_data_disk.sh",
     "addressPrefix": "10.0.0.0/16",
     "subnetName": "Subnet",
     "subnetPrefix": "10.0.0.0/24",
