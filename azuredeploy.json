@@ -4,6 +4,7 @@
   "parameters": {
     "newStorageAccountName": {
       "type": "string",
+      "defaultValue": "EI-backend-storage",
       "metadata": {
         "description": "Unique DNS Name for the Storage Account where the Virtual Machine's disks will be placed."
       }
@@ -22,13 +23,14 @@
     },
     "dnsNameForPublicIP": {
       "type": "string",
+      "defaultValue": "EIbackendVM",
       "metadata": {
         "description": "Unique DNS Name for the Public IP used to access the Virtual Machine."
       }
     },
     "vmName": {
       "type": "string",
-      "defaultValue": "EIDockerVM",
+      "defaultValue": "EEIbackendVM",
       "metadata": {
         "description": "Name of the sample VM to create"
       }
@@ -66,7 +68,7 @@
     "subnetName": "Subnet",
     "subnetPrefix": "10.0.0.0/24",
     "storageAccountType": "Standard_LRS",
-    "publicIPAddressName": "[concat(parameters('vmName'),'EI-PublicIP')]",
+    "publicIPAddressName": "[concat(parameters('vmName'),'-PublicIP')]",
     "publicIPAddressType": "Dynamic",
     "vmStorageAccountContainerName": "vhds",
     "vmName": "[parameters('vmName')]",
