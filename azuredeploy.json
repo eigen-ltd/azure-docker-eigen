@@ -4,12 +4,14 @@
   "parameters": {
     "newStorageAccountName": {
       "type": "string",
+      "defaultValue": "Eigen-backend-storage",
       "metadata": {
         "description": "Unique DNS Name for the Storage Account where the Virtual Machine's disks will be placed."
       }
     },
     "adminUsername": {
       "type": "string",
+      "defaultValue": "eigen_deploy",
       "metadata": {
         "description": "Username for the Virtual Machine."
       }
@@ -22,13 +24,14 @@
     },
     "dnsNameForPublicIP": {
       "type": "string",
+      "defaultValue": "WINTERDEAEIbackend",
       "metadata": {
         "description": "Unique DNS Name for the Public IP used to access the Virtual Machine."
       }
     },
     "vmName": {
       "type": "string",
-      "defaultValue": "EigenIngenuityDockerVM",
+      "defaultValue": "WINTERDEAEIbackend",
       "metadata": {
         "description": "Name of the sample VM to create"
       }
