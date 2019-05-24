@@ -4,7 +4,6 @@
   "parameters": {
     "newStorageAccountName": {
       "type": "string",
-      "defaultValue": "EI-backend-storage",
       "metadata": {
         "description": "Unique DNS Name for the Storage Account where the Virtual Machine's disks will be placed."
       }
@@ -23,14 +22,13 @@
     },
     "dnsNameForPublicIP": {
       "type": "string",
-      "defaultValue": "EIbackendVM",
       "metadata": {
         "description": "Unique DNS Name for the Public IP used to access the Virtual Machine."
       }
     },
     "vmName": {
       "type": "string",
-      "defaultValue": "EEIbackendVM",
+      "defaultValue": "EigenIngenuityDockerVM",
       "metadata": {
         "description": "Name of the sample VM to create"
       }
@@ -59,8 +57,8 @@
     "imageOffer": "CentOS",
     "imageSku": "7.5",
     "OSDiskName": "osDisk",
-    "nsgName": "[concat(parameters('vmName'),'EI-NSG')]",
-    "nicName": "[concat(parameters('vmName'),'EI-NIC')]",
+    "nsgName": "[concat(parameters('vmName'),'EigenNSG')]",
+    "nicName": "[concat(parameters('vmName'),'EigenNIC')]",
     "dockerExtensionName": "DockerExtension",
     "azureVMUtilsName": "vmCustomizationExt",
     "azureVMUtilsScriptUrl": "https://raw.githubusercontent.com/eigen-ltd/azure-docker-eigen/master/extras/setup_data_disk.sh",
@@ -73,11 +71,10 @@
     "vmStorageAccountContainerName": "vhds",
     "vmName": "[parameters('vmName')]",
     "vmSize": "[parameters('vmSize')]",
-    "virtualNetworkName": "[concat(parameters('vmName'),'EI-VNET')]",
+    "virtualNetworkName": "[concat(parameters('vmName'),'EigenVNET')]",
     "nsgID": "[resourceId('Microsoft.Network/networkSecurityGroups',variables('nsgName'))]",
     "subnetRef": "[resourceId('Microsoft.Network/virtualNetworks/subnets', variables('virtualNetworkName'), variables('subnetName'))]",
-    "dataDisk1VhdName": "[concat('http://',parameters('newStorageAccountName'),'.blob.core.windows.net/',variables('vmStorageAccountContainerName'),'/',variables('vmName'),'docker-storageDisk.vhd')]",
-    "dataDisk2VhdName": "[concat('http://',parameters('newStorageAccountName'),'.blob.core.windows.net/',variables('vmStorageAccountContainerName'),'/',variables('vmName'),'docker-workspacesDisk.vhd')]"
+    "dataDisk1VhdName": "[concat('http://',parameters('newStorageAccountName'),'.blob.core.windows.net/',variables('vmStorageAccountContainerName'),'/',variables('vmName'),'dataDisk1.vhd')]"
   },
   "resources": [
     {
@@ -192,7 +189,7 @@
           {
             "name": "ssh",
             "properties": {
-              "description": "Allow SSH Eigen Ltd Jumpserver",
+              "description": "Allow SSH from Eigen Ltd Jumpserver",
               "protocol": "Tcp",
               "sourcePortRange": "*",
               "destinationPortRange": "22",
@@ -236,19 +233,10 @@
             "caching": "ReadWrite",
             "createOption": "FromImage"
           },
-          "docker-storage": [
+          "dataDisks": [
             {
-              "name": "[concat(variables('vmName'),'_docker-storageDisk')]", 
-              "diskSizeGB": "20",
-              "lun": 0,
-              "createOption": "Empty"
-            }
-          ]
-          },
-          "docker-workspaces": [
-            {
-              "name": "[concat(variables('vmName'),'_docker-workspacesDisk')]", 
-              "diskSizeGB": "10",
+              "name": "[concat(variables('vmName'),'_DataDisk1')]", 
+              "diskSizeGB": "100",
               "lun": 0,
               "createOption": "Empty"
             }
