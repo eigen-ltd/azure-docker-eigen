@@ -20,28 +20,10 @@ parted -s /dev/sdc mkpart primary ext4 0\% 100\%
 mkfs.ext4 /dev/sdc1
 
 # create the mount point
-mkdir /docker-storage
+mkdir /datadisk
 
 # mount the disk
-sudo mount /dev/sdc1 /docker-storage/
+sudo mount /dev/sdc1 /datadisk/
 
 # add mount to /etc/fstab to persist across reboots
-echo "/dev/sdc1    /docker-storage/    ext4    defaults 0 0" >> /etc/fstab
-
-# create a partition table for the disk
-parted -s /dev/sdc mklabel msdos
-
-# create a single large partition
-parted -s /dev/sdc mkpart primary ext4 0\% 100\%
-
-# install the file system
-mkfs.ext4 /dev/sdc2
-
-# create the mount point
-mkdir /docker-workspaces
-
-# mount the disk
-sudo mount /dev/sdc1 /docker-workspaces/
-
-# add mount to /etc/fstab to persist across reboots
-echo "/dev/sdc2    /docker-workspaces/    ext4    defaults 0 0" >> /etc/fstab
+echo "/dev/sdc1    /datadisk/    ext4    defaults 0 0" >> /etc/fstab
