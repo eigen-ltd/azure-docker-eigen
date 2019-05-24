@@ -24,14 +24,14 @@
     },
     "dnsNameForPublicIP": {
       "type": "string",
-      "defaultValue": "winterdeaeibackend",
+      "defaultValue": "wtseibackend",
       "metadata": {
         "description": "Unique DNS Name for the Public IP used to access the Virtual Machine."
       }
     },
     "vmName": {
       "type": "string",
-      "defaultValue": "winterdeaeibackend",
+      "defaultValue": "wtseibackend",
       "metadata": {
         "description": "Name of the sample VM to create"
       }
@@ -60,8 +60,8 @@
     "imageOffer": "CentOS",
     "imageSku": "7.5",
     "OSDiskName": "osDisk",
-    "nsgName": "[concat(parameters('vmName'),'EigenNSG')]",
-    "nicName": "[concat(parameters('vmName'),'EigenNIC')]",
+    "nsgName": "[concat(parameters('vmName'),'_NSG')]",
+    "nicName": "[concat(parameters('vmName'),'_NIC')]",
     "dockerExtensionName": "DockerExtension",
     "azureVMUtilsName": "vmCustomizationExt",
     "azureVMUtilsScriptUrl": "https://raw.githubusercontent.com/eigen-ltd/azure-docker-eigen/master/extras/setup_data_disk.sh",
@@ -69,12 +69,12 @@
     "subnetName": "Subnet",
     "subnetPrefix": "10.0.0.0/24",
     "storageAccountType": "Standard_LRS",
-    "publicIPAddressName": "[concat(parameters('vmName'),'-PublicIP')]",
+    "publicIPAddressName": "[concat(parameters('vmName'),'_PublicIP')]",
     "publicIPAddressType": "Dynamic",
     "vmStorageAccountContainerName": "vhds",
     "vmName": "[parameters('vmName')]",
     "vmSize": "[parameters('vmSize')]",
-    "virtualNetworkName": "[concat(parameters('vmName'),'EigenVNET')]",
+    "virtualNetworkName": "EI_backend_VNET",
     "nsgID": "[resourceId('Microsoft.Network/networkSecurityGroups',variables('nsgName'))]",
     "subnetRef": "[resourceId('Microsoft.Network/virtualNetworks/subnets', variables('virtualNetworkName'), variables('subnetName'))]",
     "dataDisk1VhdName": "[concat('http://',parameters('newStorageAccountName'),'.blob.core.windows.net/',variables('vmStorageAccountContainerName'),'/',variables('vmName'),'dataDisk1.vhd')]"
