@@ -4,7 +4,7 @@
   "parameters": {
     "newStorageAccountName": {
       "type": "string",
-      "defaultValue": "Eigen-backend-storage",
+      "defaultValue": "eigenbackendstorage",
       "metadata": {
         "description": "Unique DNS Name for the Storage Account where the Virtual Machine's disks will be placed."
       }
@@ -24,14 +24,14 @@
     },
     "dnsNameForPublicIP": {
       "type": "string",
-      "defaultValue": "WINTERDEAEIbackend",
+      "defaultValue": "winterdeaeibackend",
       "metadata": {
         "description": "Unique DNS Name for the Public IP used to access the Virtual Machine."
       }
     },
     "vmName": {
       "type": "string",
-      "defaultValue": "WINTERDEAEIbackend",
+      "defaultValue": "winterdeaeibackend",
       "metadata": {
         "description": "Name of the sample VM to create"
       }
