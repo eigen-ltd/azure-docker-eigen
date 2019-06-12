@@ -65,9 +65,9 @@
     "dockerExtensionName": "DockerExtension",
     "azureVMUtilsName": "vmCustomizationExt",
     "azureVMUtilsScriptUrl": "https://raw.githubusercontent.com/eigen-ltd/azure-docker-eigen/master/extras/setup_data_disk.sh",
-    "addressPrefix": "10.0.0.0/16",
+    "addressPrefix": "10.101.0.0/16",
     "subnetName": "Subnet",
-    "subnetPrefix": "10.0.0.0/24",
+    "subnetPrefix": "10.101.0.0/24",
     "storageAccountType": "Standard_LRS",
     "publicIPAddressName": "[concat(parameters('vmName'),'_PublicIP')]",
     "publicIPAddressType": "Dynamic",
@@ -188,20 +188,6 @@
               "priority": 102,
               "direction": "Inbound"
             }
-          },
-          {
-            "name": "ssh",
-            "properties": {
-              "description": "Allow SSH from Eigen Ltd Jumpserver",
-              "protocol": "Tcp",
-              "sourcePortRange": "*",
-              "destinationPortRange": "22",
-              "sourceAddressPrefix": "86.188.254.49",
-              "destinationAddressPrefix": "*",
-              "access": "Allow",
-              "priority": 110,
-              "direction": "Inbound"
-            }
           }
         ]
       }
@@ -297,7 +283,7 @@
                 "6380:6380"
               ],
               "volumes": [
-                "/datadisk:/var/lib/redis/data"
+                "/var/lib/docker-workspaces/data/redis:/var/lib/redis/data"
               ]
             }
           }
