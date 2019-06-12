@@ -36,5 +36,5 @@ mount /dev/dockervg/docker--workspaces /var/lib/docker-workspaces
 
 # add mount to /etc/fstab to persist across reboots
 #echo "/dev/data-vg01/data-lv01    /data/    ext4    defaults 0 2" >> /etc/fstab
-echo "/dev/dockervg/docker--storage    /var/lib/docker    ext4    defaults 0 2" >> /etc/fstab
-echo "/dev/dockervg/docker--workspaces     /var/lib/docker-workspaces    ext4    defaults 0 2" >> /etc/fstab
+echo "/dev/dockervg/docker--storage    /var/lib/docker    ext4    defaults 1 2" >> /etc/fstab
+echo "/dev/dockervg/docker--workspaces     /var/lib/docker-workspaces    ext4    defaults 1 2" >> /etc/fstab
