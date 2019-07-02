@@ -53,6 +53,13 @@
       "metadata": {
         "description": "Location for all resources."
       }
+    },
+    "supportsHttpsTrafficOnly": {
+      "type": "bool",
+      "defaultValue": "true",
+      "metadata": {
+        "description": "httpsTrafficOnly for Storage Account"
+      }
     }
   },
   "variables": {
@@ -86,7 +93,8 @@
       "apiVersion": "2015-05-01-preview",
       "location": "[parameters('location')]",
       "properties": {
-        "accountType": "[variables('storageAccountType')]"
+        "accountType": "[variables('storageAccountType')]",
+        "supportsHttpsTrafficOnly": "[parameters('supportsHttpsTrafficOnly')]"
       }
     },
     {
@@ -252,7 +260,7 @@
       "name": "[concat(variables('vmName'),'/', variables('dockerExtensionName'))]",
       "apiVersion": "2015-05-01-preview",
       "location": "[parameters('location')]",
-      "dependsOn": [
+      "dependsOn":azure [
         "[concat('Microsoft.Compute/virtualMachines/',variables('vmName'),'/','extensions/',variables('azureVMUtilsName'))]"
       ],
       "properties": {
