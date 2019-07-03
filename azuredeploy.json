@@ -2,13 +2,6 @@
   "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
-    "newStorageAccountName": {
-      "type": "string",
-      "defaultValue": "eigenbackendstorage",
-      "metadata": {
-        "description": "Unique DNS Name for the Storage Account where the Virtual Machine's disks will be placed."
-      }
-    },
     "adminUsername": {
       "type": "string",
       "defaultValue": "eigen_deploy",
@@ -68,6 +61,7 @@
     "addressPrefix": "10.101.0.0/16",
     "subnetName": "Subnet",
     "subnetPrefix": "10.101.0.0/24",
+    "storageAccountName": "[concat('sa',uniqueString(resourceGroup().id))]",
     "storageAccountType": "Standard_LRS",
     "publicIPAddressName": "[concat(parameters('vmName'),'_PublicIP')]",
     "publicIPAddressType": "Dynamic",
@@ -77,16 +71,31 @@
     "virtualNetworkName": "EI_backend_VNET",
     "nsgID": "[resourceId('Microsoft.Network/networkSecurityGroups',variables('nsgName'))]",
     "subnetRef": "[resourceId('Microsoft.Network/virtualNetworks/subnets', variables('virtualNetworkName'), variables('subnetName'))]",
-    "dataDisk1VhdName": "[concat('http://',parameters('newStorageAccountName'),'.blob.core.windows.net/',variables('vmStorageAccountContainerName'),'/',variables('vmName'),'dataDisk1.vhd')]"
+    "dataDisk1VhdName": "[concat('http://',variables('StorageAccountName'),'.blob.core.windows.net/',variables('vmStorageAccountContainerName'),'/',variables('vmName'),'dataDisk1.vhd')]"
   },
   "resources": [
     {
       "type": "Microsoft.Storage/storageAccounts",
-      "name": "[parameters('newStorageAccountName')]",
       "apiVersion": "2018-07-01",
+      "name": "[variables('storageAccountName')]",
       "location": "[parameters('location')]",
+      "sku": {
+        "name": "[variables('storageAccountType')]"
+      },
+      "kind": "StorageV2",
       "properties": {
-        "accountType": "[variables('storageAccountType')]"
+        "encryption": {
+          "services": {
+            "blob": {
+              "enabled": true
+            },
+            "file": {
+              "enabled": true
+            }
+          },
+          "keySource": "Microsoft.Storage"
+        },
+        "supportsHttpsTrafficOnly": true
       }
     },
     {
