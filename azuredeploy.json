@@ -95,7 +95,10 @@
           },
           "keySource": "Microsoft.Storage"
         },
-        "supportsHttpsTrafficOnly": true
+        "supportsHttpsTrafficOnly": true,
+        "debugSetting": {
+           "detailLevel": "requestContent, responseContent"
+        }
       }
     },
     {
