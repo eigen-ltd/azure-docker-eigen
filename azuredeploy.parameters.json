@@ -5,9 +5,6 @@
         "newStorageAccountName": {
             "value": "GEN-UNIQUE"
         },
-         "NewSupportsHttpsTrafficOnly": {
-            "value": "true"
-        },
         "vmSize": {
             "value": "Standard_D2"
         },

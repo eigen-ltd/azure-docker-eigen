@@ -53,13 +53,6 @@
       "metadata": {
         "description": "Location for all resources."
       }
-    },
-    "supportsHttpsTrafficOnly": {
-      "type": "bool",
-      "defaultValue": "true",
-      "metadata": {
-        "description": "httpsTrafficOnly for Storage Account"
-      }
     }
   },
   "variables": {
@@ -93,8 +86,7 @@
       "apiVersion": "2018-07-01",
       "location": "[parameters('location')]",
       "properties": {
-        "accountType": "[variables('storageAccountType')]",
-        "supportsHttpsTrafficOnly": "[parameters('supportsHttpsTrafficOnly')]"
+        "accountType": "[variables('storageAccountType')]"
       }
     },
     {
